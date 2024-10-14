@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torte Sabianito | Custom Cakes</title>
+    <style>
+        * {
+            padding: 20px;
+            box-sizing: border-box; 
+        }
+
+        body {
+            background-image: url('backcookie.webp');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color:  #2c1212;
+        }
+
+        header, main, footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            color:  #2c1212;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            border: 1px solid #2c1212;
+            border-radius: 5px;
+        }
+
+        select, textarea, input {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #2c1212;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: rgb(233, 200, 129);
+        }
+
+        button:hover {
+            background-color: #ff85c0;
+        }
+
+        nav ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #2c1212;
+            color: rgb(233, 200, 129);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Torte Sabianito</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#custom-cake">Order Custom Cake</a></li>
+                <li><a href="#hours">Bakery Hours</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Custom Cake Order Section -->
+        <section id="custom-cake">
+            <h2>Order Your Custom Cake</h2>
+            <form id="cake-form">
+                <div id="cake-orders">
+                    <!-- First Cake Order (Initial) -->
+                    <div class="cake-order">
+                        <!-- Cake Flavor -->
+                        <label for="flavor">Choose a Flavor:</label>
+                        <div class="cake-flavor">
+                            <input type="radio" id="vanilla-1" name="flavor-1" value="vanilla" required>
+                            <label for="vanilla-1"><img src="vanilla cake.webp" alt="Vanilla Cake" width="150" height="150"> Vanilla (P299.99)</label>
+
+                            <input type="radio" id="chocolate-1" name="flavor-1" value="chocolate" required>
+                            <label for="chocolate-1"><img src="choco cake.jpg" alt="Chocolate Cake" width="150" height="150"> Chocolate (P319.99)</label>
+
+                            <input type="radio" id="red-velvet-1" name="flavor-1" value="red-velvet" required>
+                            <label for="red-velvet-1"><img src="red vel.jpg" alt="Red Velvet Cake" width="150" height="150"> Red Velvet (P349.99)</label>
+                        </div>
+
+                        <!-- Cake Size -->
+                        <label for="size">Cake Size:</label>
+                        <select id="size-1" name="size-1" required>
+                            <option value="" disabled selected>Select a size</option>
+                            <option value="small">P299.99 - Small (8 inch)</option>
+                            <option value="medium">P419.99 - Medium (10 inch)</option>
+                            <option value="large">P529.99 - Large (12 inch)</option>
+                        </select>
+
+                        <!-- Quantity -->
+                        <label for="quantity-1">How many cakes do you want to order?</label>
+                        <input type="number" id="quantity-1" name="quantity-1" min="1" placeholder="Enter quantity" required>
+
+                        <!-- Cake Design -->
+                        <label for="design-1">Design Instructions:</label>
+                        <textarea id="design-1" name="design-1" rows="4" placeholder="Describe your custom design" required></textarea>
+                        <label for="image">Picture of the Design:</label>
+
+                     <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Button to add more cakes -->
+                <button type="button" id="add-more">Add Another Cake</button>
+
+                <br> <br> <br> <br>
+
+                <!-- Contact Info -->
+                <label for="contact">Contact Information:</label>
+                <input type="text" id="contact" name="contact" placeholder="Your email or phone" required>
+
+                <br> <br> <br> <br>
+
+                <!-- Submit Button -->
+                <button type="submit">Place Order</button>
+                <button type="cancel">Cancel Order</button>
+            </form>
+        </section>
+
+        <!-- Bakery Hours Section -->
+        <section id="hours">
+            <h2>Bakery Hours</h2>
+            <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+            <p>Saturday: 9:00 AM - 5:00 PM</p>
+            <p>Sunday: Closed</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: contact@tortesabianito.com</p>
+            <p>Phone: (555) 123-4567</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Torte Sabianito. All rights reserved.</p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("cake-form");
+            const cakeOrdersDiv = document.getElementById("cake-orders");
+            const addMoreButton = document.getElementById("add-more");
+            let cakeOrderCount = 1;
+
+            // Function to create a new cake order form section
+            function addCakeOrder() {
+                cakeOrderCount++;
+                const newCakeOrder = document.createElement("div");
+                newCakeOrder.classList.add("cake-order");
+                newCakeOrder.innerHTML = `
+                    <!-- Cake Flavor -->
+                    <label for="flavor-${cakeOrderCount}">Choose a Flavor:</label>
+                    <div class="cake-flavor">
+                        <input type="radio" id="vanilla-${cakeOrderCount}" name="flavor-${cakeOrderCount}" value="vanilla" required>
+                        <label for="vanilla-${cakeOrderCount}"><img src="vanilla cake.webp" alt="Vanilla Cake" width="150" height="150"> Vanilla (P299.99)</label>
+
+                        <input type="radio" id="chocolate-${cakeOrderCount}" name="flavor-${cakeOrderCount}" value="chocolate" required>
+                        <label for="chocolate-${cakeOrderCount}"><img src="choco cake.jpg" alt="Chocolate Cake" width="150" height="150"> Chocolate (P319.99)</label>
+
+                        <input type="radio" id="red-velvet-${cakeOrderCount}" name="flavor-${cakeOrderCount}" value="red-velvet" required>
+                        <label for="red-velvet-${cakeOrderCount}"><img src="red vel.jpg" alt="Red Velvet Cake" width="150" height="150"> Red Velvet (P349.99)</label>
+                    </div>
+
+                    <!-- Cake Size -->
+                    <label for="size-${cakeOrderCount}">Cake Size:</label>
+                    <select id="size-${cakeOrderCount}" name="size-${cakeOrderCount}" required>
+                        <option value="" disabled selected>Select a size</option>
+                        <option value="small">P299.99 - Small (8 inch)</option>
+                        <option value="medium">P419.99 - Medium (10 inch)</option>
+                        <option value="large">P529.99 - Large (12 inch)</option>
+                    </select>
+
+                    <!-- Quantity -->
+                    <label for="quantity-${cakeOrderCount}">How many cakes do you want to order?</label>
+                    <input type="number" id="quantity-${cakeOrderCount}" name="quantity-${cakeOrderCount}" min="1" placeholder="Enter quantity" required>
+
+                    <!-- Cake Design -->
+                    <label for="design-${cakeOrderCount}">Design Instructions:</label>
+                    <textarea id="design-${cakeOrderCount}" name="design-${cakeOrderCount}" rows="4" placeholder="Describe your custom design" required></textarea>
+                `;
+                cakeOrdersDiv.appendChild(newCakeOrder);
+            }
+
+            // Add a
